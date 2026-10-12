@@ -1,1 +1,113 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0e">
+  <meta name="description" content="A fan-made Formula 1 hub for race weekends, teams, drivers and the stories behind the speed.">
+  <title>APEX — Formula 1 Fan Hub</title>
+  <style>
+    :root{--bg:#0b0b0e;--panel:#141419;--panel2:#1b1b22;--text:#f5f5f7;--muted:#a5a5b1;--red:#ff3038;--line:#303039;--lime:#d8ff3e}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,11,14,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-1px;font-size:1.35rem}.brand-mark{display:grid;place-items:center;background:var(--red);color:white;font-size:.85rem;font-style:italic;width:35px;height:35px;clip-path:polygon(0 0,100% 0,75% 100%,0 100%)}.brand span:last-child{color:var(--red)}
+    .navlinks{display:flex;gap:28px;color:#d2d2d9;font-size:.9rem}.navlinks a:hover{color:var(--red)}.nav-cta,.btn{border:0;background:var(--red);color:white;padding:11px 17px;font-weight:800;border-radius:5px;cursor:pointer;transition:transform .2s,background .2s}.nav-cta:hover,.btn:hover{background:#e31e28;transform:translateY(-2px)}
+    .hero{position:relative;overflow:hidden;min-height:590px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 48%,rgba(255,48,56,.2),transparent 38%),linear-gradient(110deg,#0b0b0e 35%,#171116 100%)}
+    .hero:after{content:"";position:absolute;right:-9%;top:9%;width:58%;height:80%;border:1px solid rgba(255,255,255,.09);border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 0 45px rgba(255,255,255,.018),0 0 0 90px rgba(255,255,255,.014)}
+    .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding:75px 0}.eyebrow{color:var(--lime);font-size:.76rem;letter-spacing:2.5px;font-weight:900;text-transform:uppercase;display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:27px;height:2px;background:var(--lime)}
+    h1{font-size:clamp(3.3rem,7vw,6.8rem);line-height:.91;letter-spacing:-.075em;margin:22px 0;font-weight:950}h1 em{font-style:normal;color:var(--red)}.hero p{color:#c0c0c9;max-width:500px;font-size:1.06rem}.hero-actions{display:flex;align-items:center;gap:18px;margin-top:28px}.text-link{font-weight:750;font-size:.92rem}.text-link span{color:var(--red);padding-left:5px}
+    .car-art{position:relative;min-height:310px;display:grid;place-items:center}.speed-lines{position:absolute;width:100%;height:100%;background:repeating-linear-gradient(165deg,transparent 0 27px,rgba(255,255,255,.05) 28px 29px,transparent 30px 48px);mask-image:linear-gradient(90deg,transparent,#000 30%,#000 80%,transparent)}
+    .car{position:relative;width:min(100%,490px);height:180px;filter:drop-shadow(0 25px 24px rgba(0,0,0,.55));transform:skewY(-5deg)}.car-body{position:absolute;left:5%;right:4%;top:47px;height:75px;background:linear-gradient(180deg,#ff555b 0%,#e51d2a 42%,#8c0e19 100%);clip-path:polygon(0 62%,15% 47%,28% 43%,38% 10%,55% 7%,67% 34%,83% 43%,100% 55%,96% 75%,72% 79%,55% 73%,28% 76%,5% 83%)}.car-wing{position:absolute;right:2%;top:81px;width:90px;height:10px;background:#27272d;transform:skewY(8deg)}.car-wing:after{content:"";position:absolute;right:10px;top:-23px;width:9px;height:30px;background:#292930}.car-nose{position:absolute;left:0;top:94px;width:175px;height:12px;background:#ff343d;clip-path:polygon(0 0,100% 0,84% 100%,0 100%)}.wheel{position:absolute;top:90px;width:49px;height:73px;background:linear-gradient(90deg,#08080a,#35353c,#08080a);border-radius:12px;border:3px solid #55555d}.wheel.one{left:22%}.wheel.two{right:22%}.cockpit{position:absolute;left:43%;top:47px;width:64px;height:26px;border-radius:50% 50% 12% 12%;background:#17171c;border:4px solid #33333a}.car-number{position:absolute;left:51%;top:75px;color:white;font-size:1.2rem;font-weight:950;font-style:italic;transform:rotate(-3deg)}.art-label{position:absolute;right:0;bottom:5px;font-size:.7rem;letter-spacing:2px;color:#a2a2ad}
+    .ticker{background:var(--red);color:white;overflow:hidden}.ticker-inner{display:flex;justify-content:space-between;gap:24px;padding:12px 0;font-weight:900;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase}.ticker span:nth-child(even){opacity:.6}
+    section{padding:82px 0}.section-top{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}.kicker{color:var(--red);font-size:.75rem;letter-spacing:2px;font-weight:900;text-transform:uppercase}h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.055em;margin:8px 0 0}.section-top p{color:var(--muted);max-width:390px;margin:0}
+    .race-feature{display:grid;grid-template-columns:.9fr 1.1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.race-info{padding:34px}.round{color:var(--lime);font-size:.75rem;font-weight:900;letter-spacing:2px}.race-info h3{font-size:2rem;line-height:1.1;margin:12px 0}.race-info p{color:var(--muted)}.race-meta{display:flex;gap:24px;margin:24px 0}.race-meta strong{display:block;font-size:1.2rem}.race-meta small{color:var(--muted);text-transform:uppercase;font-size:.7rem;letter-spacing:1px}.circuit-panel{min-height:280px;display:grid;place-items:center;padding:25px;background:radial-gradient(ellipse,rgba(255,48,56,.12),transparent 65%),#101014}.circuit{width:100%;max-width:410px}.circuit path{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.circuit .glow{stroke:#ff3038;stroke-width:14;opacity:.12}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-5px);border-color:#656570}.card-num{font-size:.76rem;color:var(--red);font-weight:900;letter-spacing:2px}.card h3{font-size:1.25rem;margin:12px 0 6px}.card p{margin:0;color:var(--muted);font-size:.93rem}.team-bar{height:4px;margin:-24px -24px 22px;border-radius:10px 10px 0 0;background:var(--team,var(--red))}.team-head{display:flex;justify-content:space-between;align-items:center}.team-initial{font-size:2.1rem;font-weight:950;letter-spacing:-2px;color:#777782}.team-tag{font-size:.67rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .drivers{background:#101014;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.driver-card{display:flex;align-items:center;gap:16px}.driver-num{font-size:2.2rem;font-weight:950;color:var(--red);font-style:italic;min-width:54px}.driver-card h3{margin:0}.driver-card p{margin:3px 0 0}.driver-note{font-size:.8rem;color:var(--muted);margin-top:25px}
+    .newsletter{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:38px;border-radius:12px;background:linear-gradient(115deg,#291014,#171116);border:1px solid #4a252a}.newsletter h2{font-size:2.1rem}.newsletter p{color:#c2b7ba;margin-bottom:0}.subscribe{display:flex;gap:8px;width:min(100%,390px)}.subscribe input{min-width:0;flex:1;padding:12px 14px;border:1px solid #514047;border-radius:5px;background:#0c0b0e;color:white;outline:none}.subscribe input:focus{border-color:var(--red)}.message{font-size:.85rem;color:var(--lime);margin-top:8px;min-height:20px}
+    footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.83rem}.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}.disclaimer{max-width:600px}
+    @media(max-width:800px){.navlinks{gap:14px}.hero-inner{grid-template-columns:1fr;padding:65px 0 45px}.hero{min-height:auto}.car-art{min-height:230px}.car{transform:scale(.85) skewY(-5deg)}.hero:after{width:100%;right:-35%;top:35%}.race-feature{grid-template-columns:1fr}.grid3{grid-template-columns:repeat(2,1fr)}.newsletter{align-items:flex-start;flex-direction:column}.subscribe{width:100%}.section-top{align-items:flex-start;flex-direction:column}}
+    @media(max-width:540px){.wrap{width:min(100% - 28px,1160px)}nav{height:66px}.navlinks{display:none}.nav-cta{padding:9px 12px;font-size:.8rem}.hero-inner{padding-top:52px}h1{font-size:3.5rem}.hero-actions{flex-wrap:wrap}.ticker-inner{justify-content:flex-start;white-space:nowrap;overflow:hidden}.grid3{grid-template-columns:1fr}.race-info{padding:25px}.race-meta{gap:15px}.newsletter{padding:25px}.footer-inner{align-items:flex-start;flex-direction:column}.car-art{min-height:190px}.car{transform:scale(.72) skewY(-5deg)}section{padding:62px 0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Apex home"><span class="brand-mark">A</span>APEX<span>F1</span></a>
+      <div class="navlinks"><a href="#race">Race weekend</a><a href="#teams">Teams</a><a href="#drivers">Drivers</a></div>
+      <a class="nav-cta" href="#newsletter">JOIN THE GRID ↗</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <div>
+          <div class="eyebrow">The home of race day</div>
+          <h1>BUILT FOR<br>THE <em>APEX.</em></h1>
+          <p>Speed, strategy, split-second decisions. Your fan-made hub for the teams, drivers and moments that make Formula 1 unforgettable.</p>
+          <div class="hero-actions"><a class="btn" href="#race">EXPLORE THE GRID ↗</a><a class="text-link" href="#teams">Meet the teams <span>→</span></a></div>
+        </div>
+        <div class="car-art" aria-label="Stylized illustration of a red Formula racing car" role="img">
+          <div class="speed-lines"></div><div class="car"><div class="wheel one"></div><div class="wheel two"></div><div class="car-body"></div><div class="car-nose"></div><div class="car-wing"></div><div class="cockpit"></div><div class="car-number">01</div></div><div class="art-label">ENGINEERED TO THE LIMIT</div>
+        </div>
+      </div>
+    </section>
+    <div class="ticker"><div class="wrap ticker-inner"><span>Lights out</span><span>✦</span><span>Full throttle</span><span>✦</span><span>Race strategy</span><span>✦</span><span>One lap at a time</span></div></div>
+    <section id="race">
+      <div class="wrap">
+        <div class="section-top"><div><div class="kicker">01 / Race weekend</div><h2>Every second counts.</h2></div><p>From lights out to the chequered flag, the smallest decision can change everything.</p></div>
+        <div class="race-feature">
+          <div class="race-info"><div class="round">THE RACE WEEKEND</div><h3>Three days.<br>One objective.</h3><p>Follow the rhythm of a Grand Prix weekend and learn what happens before the race even begins.</p><div class="race-meta"><div><strong>FP</strong><small>Practice</small></div><div><strong>Q</strong><small>Qualifying</small></div><div><strong>GP</strong><small>Race day</small></div></div><a class="text-link" href="#guide">Understand the weekend <span>→</span></a></div>
+          <div class="circuit-panel"><svg class="circuit" viewBox="0 0 420 270" role="img" aria-label="Abstract race circuit outline"><path class="glow" d="M79 71 L128 39 L194 49 L218 86 L291 70 L347 102 L335 149 L369 184 L324 218 L258 207 L220 237 L160 207 L105 221 L55 182 L72 135 L42 106 Z"/><path d="M79 71 L128 39 L194 49 L218 86 L291 70 L347 102 L335 149 L369 184 L324 218 L258 207 L220 237 L160 207 L105 221 L55 182 L72 135 L42 106 Z"/><path d="M217 86 L201 121 L238 146 L258 207" stroke-dasharray="5 9" opacity=".45"/><circle cx="79" cy="71" r="7" fill="#d8ff3e"/><circle cx="79" cy="71" r="13" fill="none" stroke="#d8ff3e" stroke-opacity=".35" stroke-width="2"/></svg></div>
+        </div>
+      </div>
+    </section>
+    <section id="guide" style="padding-top:0">
+      <div class="wrap grid3">
+        <article class="card"><div class="card-num">01 — PRACTICE</div><h3>Find the limit</h3><p>Drivers learn the circuit, test setups and give engineers data to improve the car.</p></article>
+        <article class="card"><div class="card-num">02 — QUALIFYING</div><h3>One fast lap</h3><p>Drivers fight for the best starting position. Tiny mistakes can cost several places.</p></article>
+        <article class="card"><div class="card-num">03 — RACE DAY</div><h3>Execute the plan</h3><p>Tyre choices, pit stops, traffic and timing all combine in the fight for the finish.</p></article>
+      </div>
+    </section>
+    <section id="teams" class="drivers">
+      <div class="wrap">
+        <div class="section-top"><div><div class="kicker">02 / The constructors</div><h2>Teams behind the speed.</h2></div><p>Ten teams bring different engineering philosophies to the same relentless pursuit of performance.</p></div>
+        <div class="grid3">
+          <article class="card"><div class="team-bar" style="--team:#ff3038"></div><div class="team-head"><span class="team-tag">Scuderia</span><span class="team-initial">SF</span></div><h3>Ferrari</h3><p>Racing heritage, passionate fans and the unmistakable red.</p></article>
+          <article class="card"><div class="team-bar" style="--team:#00d2be"></div><div class="team-head"><span class="team-tag">Silver arrows</span><span class="team-initial">AMG</span></div><h3>Mercedes</h3><p>Precision engineering and a legacy of championship battles.</p></article>
+          <article class="card"><div class="team-bar" style="--team:#3671c6"></div><div class="team-head"><span class="team-tag">Racing Bulls</span><span class="team-initial">RB</span></div><h3>Red Bull Racing</h3><p>Aggressive development and a bold approach to race strategy.</p></article>
+          <article class="card"><div class="team-bar" style="--team:#ff8700"></div><div class="team-head"><span class="team-tag">Papaya</span><span class="team-initial">MCL</span></div><h3>McLaren</h3><p>A historic name with a modern, forward-looking racing spirit.</p></article>
+          <article class="card"><div class="team-bar" style="--team:#229971"></div><div class="team-head"><span class="team-tag">Aston Martin</span><span class="team-initial">AM</span></div><h3>Aston Martin</h3><p>British motorsport style paired with ambitious engineering.</p></article>
+          <article class="card"><div class="team-bar" style="--team:#b6babd"></div><div class="team-head"><span class="team-tag">The paddock</span><span class="team-initial">F1</span></div><h3>And the rest</h3><p>Every constructor brings its own story, strategy and fight for points.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="drivers">
+      <div class="wrap">
+        <div class="section-top"><div><div class="kicker">03 / The cockpit</div><h2>Meet the drivers.</h2></div><p>Behind every helmet is a different style, mindset and approach to the limit.</p></div>
+        <div class="grid3">
+          <article class="card driver-card"><div class="driver-num">01</div><div><h3>Racecraft</h3><p>Overtakes, defence and wheel-to-wheel judgement.</p></div></article>
+          <article class="card driver-card"><div class="driver-num">02</div><div><h3>Consistency</h3><p>Repeat fast laps while managing tyres and focus.</p></div></article>
+          <article class="card driver-card"><div class="driver-num">03</div><div><h3>Composure</h3><p>Make clear decisions under immense pressure.</p></div></article>
+        </div>
+        <p class="driver-note">Fan-made concept site. This page is an introduction to F1, not an official live timing or race-results service.</p>
+      </div>
+    </section>
+    <section id="newsletter" style="padding-top:0">
+      <div class="wrap"><div class="newsletter"><div><div class="kicker">Stay in the slipstream</div><h2>Join the grid.</h2><p>Drop your email into the demo form and see it respond. No data is sent or stored.</p></div><div style="flex:1;max-width:390px;width:100%"><form class="subscribe" id="subscribe-form"><label for="email" style="position:absolute;left:-9999px">Email address</label><input id="email" type="email" placeholder="you@example.com" required><button class="btn" type="submit">LET'S GO</button></form><div class="message" id="form-message" aria-live="polite"></div></div></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><a class="brand" href="#home"><span class="brand-mark">A</span>APEX<span>F1</span></a><div class="disclaimer">An independent fan-made project. Not affiliated with Formula 1, FIA, or any racing team. Team names are used for informational purposes.</div><a href="#home">Back to top ↑</a></div></footer>
+  <script>
+    document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email');
+      const message = document.getElementById('form-message');
+      if (!email.checkValidity()) { email.reportValidity(); return; }
+      message.textContent = "You're on the grid! (Demo only — nothing was sent.)";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
